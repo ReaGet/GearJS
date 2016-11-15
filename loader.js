@@ -1,46 +1,50 @@
-gear.load = {
+function Loader(app) {
 
-	total: 0,
-	queue: 0,
-	progress: 0,
+	this.app = app;
 
-	image: function(name, src) {
-		this.total++;
+	var _self = this; 
 
-		var _self = gear.load;
+	var queue = 0, 
+		total = 0;
+	
+	this.progress = 0;
 
-		var image = new Image();
-		image.src = src;
+	this.image = function(name, src) {
+		total++;
 
-		image.onload = function() {
-			_self.queue++;
-			gear.images[name] = image;
-			console.log("image loaded!");
-		}
-	},
+		var img = new Image();
+		
+		img.src = src;
+		img.onload = function() {
+			queue++;
+			_self.app.images[name] = img;
+			console.log("Image loaded!");
+		};
+	};
 
-	audio: function(name, src) {
-		this.total++;
-
-		var _self = gear.load;
+	this.audio = function(name, src) {
+		total++;
 
 		var audio = new Audio(src);
+		
 		audio.onloadeddata = function() {
-			_self.queue++;
-			gear.audios[name] = audio;
+			queue++;
+			_self.app.audios[name] = audio;
 			console.log("audio loaded!");
-		}
+		};
+	};
 
-	},
+	this.font = function(name, src) {
+		var c = document.createElement('canvas'),
+			ctx = c.getContext('2d');
 
-	font: function(name, src) {
-		this.total++;
-		this.app.images.push({ name: name, src: src });
-	},
+		var styleNode = document.createElement("style");
+		styleNode.type = "text/css";
+		styleNode.textContent = "@font-face { font-family: '" + name + "'; src: url(" + src + "); }";
 
-	step: function() {
-		this.progress = this.queue / this.total;
-		console.log(this.progress);
-	}
+		document.head.appendChild(styleNode);
 
-};
+		ctx.font = "30px " + name;
+		ctx.fillText("Testing text", 0, 0);
+	};
+}
