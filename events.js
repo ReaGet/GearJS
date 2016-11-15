@@ -1,6 +1,6 @@
-gear.events = {
+function Events() {
 
-	on: function(name, handler) {
+	this.on = function(name, handler) {
 		if (!this._eventHandlers) this._eventHandlers = {};
 		if (!this._eventHandlers[name]) {
 			this._eventHandlers[name] = [];
@@ -8,7 +8,7 @@ gear.events = {
 		this._eventHandlers[name].push(handler);
 	},
 
-	off: function(name, handler) {
+	this.off = function(name, handler) {
 		var handlers = this._eventHandlers && this._eventHandlers[name];
 		if (!handlers) return;
 		for (var i = 0; i < handlers.length; i++) {
@@ -18,7 +18,7 @@ gear.events = {
 		}
 	},
 
-	trigger: function(name) {
+	this.trigger = function(name) {
 		if (!this._eventHandlers || !this._eventHandlers[name]) return;
 		var handlers = this._eventHandlers[name];
 		for (var i = 0; i < handlers.length; i++) {

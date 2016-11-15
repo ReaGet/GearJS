@@ -1,21 +1,21 @@
-gear.state = {
+function State(app) {
+	this.app = app;
 
-	states: [],
-	current: {},
+	var states = [];
+	var current = {};
 
-	add: function(name, state) {
-		this.states[name] = state;
-		if (this.states[name].preload)
-			this.preload(name);
-	},
+	this.add = function(name, state) {
+		states[name] = state;
+		if (states[name].preload)
+			preload(name);
+	};
 
-	preload: function(name) {
-		this.states[name].preload();
-	},
+	this.preload = function(name) {
+		states[name].preload();
+	};
 
-	start: function(name) {
-		this.current = this.states[name];
-		this.current.init();
-	}
-
-};
+	this.start = function(name) {
+		current = states[name];
+		current.init();
+	};
+}

@@ -3,10 +3,9 @@ function GEAR() {
 
 	this.images = [];
 	this.audios = [];
-
+	
+	this.events = new Events();
 	this.load = new Loader(this);
-}
+	this.state = new State(this);
 
-function State(app) {
-	this.app = app;
 }

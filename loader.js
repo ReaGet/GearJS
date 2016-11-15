@@ -22,6 +22,10 @@ function Loader(app) {
 		};
 	};
 
+	this.sprite = function(name, src) {
+		
+	};
+
 	this.audio = function(name, src) {
 		total++;
 
