@@ -8,25 +8,29 @@
 <script type="text/javascript" src="events.js"></script>
 <script type="text/javascript" src="loader.js"></script>
 <script type="text/javascript" src="states.js"></script>
+<script type="text/javascript" src="utils.js"></script>
 <script type="text/javascript">
 
 	var gear = new GEAR();
 
-	function func() {
-		console.log("func");
+	var Test = {
+		preload: function() {
+
+		},
+
+		update: function() {
+
+		},
+
+		render: function() {
+
+		}
 	}
 
-	function kill() {
-		console.log("kill");
-	}
+	gear.state.create("test", Test);
+	gear.state.start("test");
 
-	function sayHi() {
-		console.log("Hi!!!");
-	}
-
-	gear.events.on("enter", func);
-	gear.events.on("enter", sayHi);
-	gear.events.on("close", kill);
+	gear.init();
 
 </script>
 </body>

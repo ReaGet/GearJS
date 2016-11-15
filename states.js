@@ -2,12 +2,12 @@ function State(app) {
 	this.app = app;
 
 	var states = [];
-	var current = {};
+	this.current = {};
 
-	this.add = function(name, state) {
+	this.create = function(name, state) {
 		states[name] = state;
 		if (states[name].preload)
-			preload(name);
+			this.preload(name);
 	};
 
 	this.preload = function(name) {
@@ -15,7 +15,7 @@ function State(app) {
 	};
 
 	this.start = function(name) {
-		current = states[name];
-		current.init();
+		this.current = states[name];
+		// this.current.init();
 	};
 }
