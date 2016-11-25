@@ -1,3 +1,8 @@
+function Dot(x, y) {
+	this.x = x || 0;
+	this.y = y || 0;
+}
+
 function Vector(x, y) {
 	this.x = x || 0;
 	this.y = y || 0;

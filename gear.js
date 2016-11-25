@@ -2,8 +2,11 @@ function GEAR() {
 	var app = this;
 
 	var canvas = null;
-	var ctx = null;
+	this.ctx = null;
 	this.viewport = null;
+	this.container = null;
+
+	this.resizable = false;
 
 	this.version = "0.0.1";
 
@@ -13,8 +16,19 @@ function GEAR() {
 	this.events = new Events();
 	this.load = new Loader(app);
 	this.state = new State(app);
+	this.draw = new Draw(app);
 
 	this.init = function() {
+		canvas = document.createElement('canvas');
+		canvas.width = this.viewport.x || 0;
+		canvas.height = this.viewport.y || 0;
+		this.ctx = canvas.getContext('2d');
+
+		if (!this.container) {
+			document.body.appendChild(canvas);
+		} else {
+			this.container.appendChild(canvas);
+		}
 
 		loop();
 	};

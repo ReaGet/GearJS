@@ -9,10 +9,13 @@
 <script type="text/javascript" src="loader.js"></script>
 <script type="text/javascript" src="states.js"></script>
 <script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript" src="draw.js"></script>
 <script type="text/javascript" src="vector.js"></script>
 <script type="text/javascript">
 
 	var gear = new GEAR();
+
+	gear.viewport = new Vector(200, 200);
 
 	var Test = {
 		preload: function() {
@@ -28,25 +31,22 @@
 		}
 	}
 
-	var Test2 = {
-		preload: function() {
-
-		},
-
-		update: function() {
-
-		},
-
-		render: function() {
-
-		}
-	}
-
 	gear.state.create("test", Test);
-	gear.state.create("test2", Test2);
 	gear.state.start("test");
 
 	gear.init();
+
+	gear.draw.color = "red";
+	gear.draw.rect(0, 0, 100, 100);
+
+	gear.draw.color = "green";
+	gear.draw.rect(100, 0, 100, 100, true);
+
+	gear.draw.color = "blue";
+	gear.draw.circle(50, 150, 50, true);
+
+	gear.draw.color = "yellow";
+	gear.draw.circle(150, 150, 50);
 
 </script>
 </body>
