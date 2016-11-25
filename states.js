@@ -16,6 +16,7 @@ function State(app) {
 
 	this.start = function(name) {
 		this.current = states[name];
+		console.log(name + " started!");
 		// this.current.init();
 	};
 }

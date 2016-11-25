@@ -9,6 +9,7 @@
 <script type="text/javascript" src="loader.js"></script>
 <script type="text/javascript" src="states.js"></script>
 <script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript" src="vector.js"></script>
 <script type="text/javascript">
 
 	var gear = new GEAR();
@@ -27,7 +28,22 @@
 		}
 	}
 
+	var Test2 = {
+		preload: function() {
+
+		},
+
+		update: function() {
+
+		},
+
+		render: function() {
+
+		}
+	}
+
 	gear.state.create("test", Test);
+	gear.state.create("test2", Test2);
 	gear.state.start("test");
 
 	gear.init();
