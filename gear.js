@@ -51,8 +51,8 @@ function GEAR() {
 		if (!RESIZABLE)
 			return;
 
-		this.DEVICE_WIDTH = window.innerWidth;
-        this.DEVICE_HEIGHT = window.innerHeight;
+		this.DEVICE_WIDTH = this.container.getBoundingClientRect().width || window.innerWidth;
+        this.DEVICE_HEIGHT = this.container.getBoundingClientRect().height || window.innerHeight;
         var RATIO = VIEWPORT.x / VIEWPORT.y;
         var ratio = this.DEVICE_WIDTH / this.DEVICE_HEIGHT;
 
@@ -63,10 +63,6 @@ function GEAR() {
         else if (ratio < JUMP.RATIO) {
             this.SCALE = this.DEVICE_WIDTH / VIEWPORT.x;            
         }
-
-        // if (JUMP.android || JUMP.ios) {
-
-        // }
 
         canvas.style.width = VIEWPORT.x * this.SCALE + 'px';
         canvas.style.height = VIEWPORT.y * this.SCALE + 'px';
@@ -83,7 +79,7 @@ function GEAR() {
 
 	function loop() {
 		// utils.log(app.state.current, 2);
-		if (!app.state.current) {
+		if (app.state.current) {
 			app.state.current.update();
 			app.state.current.render();
 		}

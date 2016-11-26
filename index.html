@@ -16,37 +16,31 @@
 	var gear = new GEAR();
 
 	gear.viewport = new Vector(200, 200);
-	
 	gear.init();
 
 	var Test = {
+		pos: null,
+		speed: 2,
 		preload: function() {
-
+			this.pos = new Vector(0, 0);
 		},
 
 		update: function() {
+			if (this.pos.x < 0 || this.pos.x + 50 > gear.viewport.x)
+				this.speed *= -1;
 
+			this.pos.x += this.speed;
 		},
 
 		render: function() {
-
+			gear.draw.clear();
+			gear.draw.color = "#000";
+			gear.draw.rect(this.pos.x, this.pos.y, 50, 50, true);
 		}
 	}
 
 	gear.state.create("test", Test);
 	gear.state.start("test");
-
-	gear.draw.color = "red";
-	gear.draw.rect(0, 0, 100, 100);
-
-	gear.draw.color = "green";
-	gear.draw.rect(100, 0, 100, 100, true);
-
-	gear.draw.color = "blue";
-	gear.draw.circle(50, 150, 50, true);
-
-	gear.draw.color = "yellow";
-	gear.draw.circle(150, 150, 50);
 
 </script>
 </body>

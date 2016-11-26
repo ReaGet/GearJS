@@ -2,6 +2,7 @@ function Draw(app) {
 	this.app = app;
 
 	this.color = "#000";
+	this.lineWidth = 1;
 
 	this.imageSmoothEnabled = function(bool) {
 		this.app.ctx.mozImageSmoothingEnabled = bool;
@@ -11,7 +12,7 @@ function Draw(app) {
 	};
 
 	this.clear = function() {
-		this.app.ctx.clear(0, 0, this.app.canvas.width, this.app.canvas.height);
+		this.app.ctx.clearRect(0, 0, this.app.viewport.x, this.app.viewport.y);
 	};
 
 	this.rect = function(x, y, w, h, fill) {
@@ -19,6 +20,7 @@ function Draw(app) {
 			this.app.ctx.fillStyle = this.color;
 			this.app.ctx.fillRect(x, y, w, h);
 		} else {
+			this.app.ctx.lineWidth = this.lineWidth;
 			this.app.ctx.strokeStyle = this.color;
 			this.app.ctx.strokeRect(x, y, w, h);
 		}
@@ -31,6 +33,7 @@ function Draw(app) {
 			this.app.ctx.arc(x, y, r, 0, 2 * Math.PI);
 			this.app.ctx.fill();
 		} else {
+			this.app.ctx.lineWidth = this.lineWidth;
 			this.app.ctx.strokeStyle = this.color;
 			this.app.ctx.arc(x, y, r, 0, 2 * Math.PI);
 			this.app.ctx.stroke();

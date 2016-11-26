@@ -2,7 +2,7 @@ function State(app) {
 	this.app = app;
 
 	var states = [];
-	this.current = {};
+	this.current = null;
 
 	this.create = function(name, state) {
 		states[name] = state;
