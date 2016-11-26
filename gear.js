@@ -6,7 +6,12 @@ function GEAR() {
 	this.viewport = null;
 	this.container = null;
 
+	var VIEWPORT = null;
+	var RESIZABLE = false;
+	this.DEVICE_WIDTH = null;
+	this.DEVICE_HEIGHT = null;
 	this.resizable = false;
+	this.SCALE = 1;
 
 	this.version = "0.0.1";
 
@@ -30,8 +35,42 @@ function GEAR() {
 			this.container.appendChild(canvas);
 		}
 
+		VIEWPORT = new Vector(0, 0);
+		VIEWPORT.x = this.viewport.x;
+		VIEWPORT.y = this.viewport.y;
+
+		RESIZABLE = this.resizable;
+
+		resize();
+		window.addEventListener("resize", resize);
+
 		loop();
 	};
+
+	function resize() {
+		if (!RESIZABLE)
+			return;
+
+		this.DEVICE_WIDTH = window.innerWidth;
+        this.DEVICE_HEIGHT = window.innerHeight;
+        var RATIO = VIEWPORT.x / VIEWPORT.y;
+        var ratio = this.DEVICE_WIDTH / this.DEVICE_HEIGHT;
+
+        // WIDTH higher then HEIGHT
+        if (ratio > RATIO) {
+            this.SCALE = this.DEVICE_HEIGHT / VIEWPORT.y;
+        } // HEIGHT higher then WIDTH
+        else if (ratio < JUMP.RATIO) {
+            this.SCALE = this.DEVICE_WIDTH / VIEWPORT.x;            
+        }
+
+        // if (JUMP.android || JUMP.ios) {
+
+        // }
+
+        canvas.style.width = VIEWPORT.x * this.SCALE + 'px';
+        canvas.style.height = VIEWPORT.y * this.SCALE + 'px';
+	}
 
 	var raf = (function() {
 		return  window.requestAnimationFrame       ||
@@ -44,10 +83,10 @@ function GEAR() {
 
 	function loop() {
 		// utils.log(app.state.current, 2);
-		app.state.current.update();
-		app.state.current.render();
-
-		utils.log("log", 3);
+		if (!app.state.current) {
+			app.state.current.update();
+			app.state.current.render();
+		}
 		
 		raf(loop);
 	};

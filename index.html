@@ -16,6 +16,8 @@
 	var gear = new GEAR();
 
 	gear.viewport = new Vector(200, 200);
+	
+	gear.init();
 
 	var Test = {
 		preload: function() {
@@ -33,8 +35,6 @@
 
 	gear.state.create("test", Test);
 	gear.state.start("test");
-
-	gear.init();
 
 	gear.draw.color = "red";
 	gear.draw.rect(0, 0, 100, 100);

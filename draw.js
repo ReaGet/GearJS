@@ -10,6 +10,10 @@ function Draw(app) {
 		this.app.ctx.imageSmoothingEnabled = bool;
 	};
 
+	this.clear = function() {
+		this.app.ctx.clear(0, 0, this.app.canvas.width, this.app.canvas.height);
+	};
+
 	this.rect = function(x, y, w, h, fill) {
 		if (!fill) {
 			this.app.ctx.fillStyle = this.color;
