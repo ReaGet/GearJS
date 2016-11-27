@@ -16,7 +16,9 @@
 
 	var gear = new GEAR();
 
-	gear.viewport = new Vector(200, 200);
+	gear.viewport = new Vector(900, 900);
+	gear.resizable = true;
+	// gear.center = true;
 	gear.init();
 
 	var Test = {
@@ -34,7 +36,7 @@
 		},
 
 		render: function() {
-			gear.draw.clear();
+			gear.draw.clear("red");
 			gear.draw.color = "#000";
 			gear.draw.rect(this.pos.x, this.pos.y, 50, 50, true);
 		}
