@@ -5,3 +5,5 @@ GearJS is a simple javascript game engine. It's in development.
 - States
 - Loader
 - Events
+- Mouse support
+- Keyboard support
