@@ -30,6 +30,12 @@
 
 	gear.input.enableKeyboard();
 
+	var menu = {
+		update: function() {
+			gear.state.transition("test", 10, 1);
+		}
+	}
+
 	var Test = {
 
 		preload: function() {
@@ -73,8 +79,9 @@
 		}
 	}
 
+	gear.state.create("menu", menu);
 	gear.state.create("test", Test);
-	gear.state.start("test");
+	gear.state.start("menu");
 
 </script>
 </body>
