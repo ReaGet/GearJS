@@ -59,14 +59,16 @@
 			}
 
 			this.movement.normalize();
-			this.movement.multiply(5);
+			this.movement.multiply(10);
 
 			this.pos.add(this.movement.x, this.movement.y);
 		},
 
 		render: function() {
 			gear.draw.clear("#eee");
-			gear.draw.color = "#333";
+			gear.draw.color = "#f4425f";
+			gear.draw.roundRect(this.pos.x, this.pos.y + 5, 100, 100, 5);
+			gear.draw.color = "#fff";
 			gear.draw.roundRect(this.pos.x, this.pos.y, 100, 100, 5);
 		}
 	}
